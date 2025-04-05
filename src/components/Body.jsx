@@ -33,7 +33,8 @@ const Body = () => {
 
     if(onlineStatus === false)
         return (
-            <h1>You Are OffLine</h1>
+            <h1>You Are OffLine</h1> 
+            
         ); 
 
     const filterTopRated = () => {

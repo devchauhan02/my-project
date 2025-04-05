@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; 
 import Restaurant from "./Restaurant";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [listRest, setListRest] = useState([]);
@@ -27,6 +28,13 @@ const Body = () => {
         setListRest(restaurants);
         setFilterAllRestraunt(restaurants);
     };
+
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false)
+        return (
+            <h1>You Are OffLine</h1>
+        ); 
 
     const filterTopRated = () => {
         const filteredList = listRest.filter((res) => res.info.avgRating > 4.2);

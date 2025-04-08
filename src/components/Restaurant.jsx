@@ -2,22 +2,20 @@ import { CDN_URL } from "../utils/constants";
 
 const Restaurant = ({ name, cuisines, rating, time, cost, serviceability, cloudinaryImageId }) => {
     return (
-        <div className="restaurant-card">
+        <div className="rounded-lg  bg-gray-30 border border-gray-200 shadow-md p-4 hover:shadow-xl transition">
             <img
-                className="restaurant-image"
+                className="w-full h-40 object-cover rounded-md mb-2"
                 src={CDN_URL + cloudinaryImageId}
                 alt={name}
             />
-            <div className="restaurant-info">
-                <h3>{name}</h3>
-                <p className="cuisines">{cuisines}</p>
-                <div className="restaurant-details">
-                    <span className="rating">⭐ {rating}</span>
-                    <span className="time">⏳ {time} MINS</span>
-                    <span className="cost">💰 {cost}</span>
-                </div>
-                <p className="serviceability">{serviceability}</p>
+            <h3 className="text-lg font-semibold">{name}</h3>
+            <p className="text-gray-600 text-sm">{cuisines.join(", ")}</p>
+            <div className="text-sm mt-2 flex justify-between text-gray-800">
+                <span>⭐ {rating}</span>
+                <span>⏳ {time} mins</span>
+                <span>💰 {cost}</span>
             </div>
+            <p className="text-xs text-gray-500 mt-1">{serviceability}</p>
         </div>
     );
 };

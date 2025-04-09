@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/constants";
 
-const Restaurant = ({ name, cuisines, rating, time, cost, serviceability, cloudinaryImageId }) => {
+const Restaurant = ({ name, cuisines, rating, time, cost, locality, cloudinaryImageId }) => {
     return (
         <div className="rounded-lg  bg-gray-30 border border-gray-200 shadow-md p-4 hover:shadow-xl transition">
             <img
@@ -15,7 +15,7 @@ const Restaurant = ({ name, cuisines, rating, time, cost, serviceability, cloudi
                 <span>⏳ {time} mins</span>
                 <span>💰 {cost}</span>
             </div>
-            <p className="text-xs text-gray-500 mt-1">{serviceability}</p>
+            <p className="text-xs text-gray-500 mt-1">{locality}</p>
         </div>
     );
 };

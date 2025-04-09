@@ -6,7 +6,7 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="flex justify-between items-center pr-8 bg-gradient-to-r from-orange-100 via-pink-100 to-pink-200 shadow-md">
+    <div className="flex justify-between items-center pr-8 bg-green-50 shadow-md">
       {/* Logo */}
       <div className="flex items-center">
         <img src={LOGO_URL} alt="Food App Logo" className="w-20 h-20 object-contain" />

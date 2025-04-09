@@ -6,7 +6,7 @@ import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header";  
-import Body from "./components/Body";      
+    
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 // import Grocery from "./components/Grocery";
@@ -16,6 +16,7 @@ import Shimmer from "./components/Shimmer";
 // also known as on demand loading
 
 const Grocery = lazy(() => import("./components/Grocery"))
+const Body = lazy(() => import("./components/Body"));
 
 const AppLayout = () => {
   return (
@@ -32,9 +33,14 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/",  
-        element: <Body />,
-      },
+        path: "/",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Body />
+          </Suspense>
+        ),
+      }
+      ,
       {
         path: "/about",
         element: <About />,

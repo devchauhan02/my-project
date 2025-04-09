@@ -27,7 +27,10 @@ const Body = () => {
 
         setListRest(restaurants);
         setFilterAllRestraunt(restaurants);
+        console.log(restaurants)
     };
+
+    console.log(listRest)
 
     const onlineStatus = useOnlineStatus();
 
@@ -67,7 +70,7 @@ const Body = () => {
           </button>
         </div>
       
-        <div className="restaurant-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="restaurant-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-15 mr-15">
           {filterAllRestraunt.map((restaurant) => (
             <Link
               to={`/restaurant/${restaurant.info.id}`}
@@ -80,7 +83,7 @@ const Body = () => {
                 rating={restaurant.info.avgRating}
                 time={restaurant.info.sla?.deliveryTime}
                 cost={restaurant.info.costForTwo}
-                serviceability={restaurant.info.sla?.serviceability}
+                locality={restaurant.info.locality}
                 cloudinaryImageId={restaurant.info.cloudinaryImageId}
               />
             </Link>

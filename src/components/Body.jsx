@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom"; 
 import Restaurant from "./Restaurant";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
     const [listRest, setListRest] = useState([]);
@@ -40,6 +41,8 @@ const Body = () => {
             
         ); 
 
+    const {loggedInUser, setUserName} = useContext(UserContext);
+
     const filterTopRated = () => {
         const filteredList = listRest.filter((res) => res.info.avgRating > 4.2);
         setFilterAllRestraunt(filteredList);
@@ -68,6 +71,10 @@ const Body = () => {
           <button className="bg-gray-100 px-4 py-2 rounded cursor-pointer" onClick={filterTopRated}>
             Top Rated Restaurants
           </button>
+          <div className="">
+            <label>UserName: </label>
+            <input value = {loggedInUser} className="border border-black p-2" onChange={(e) => setUserName(e.target.value )} />
+          </div>
         </div>
       
         <div className="restaurant-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-15 mr-15">

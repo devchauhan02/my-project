@@ -1,4 +1,4 @@
-import React , { lazy , Suspense } from "react";
+import React , { lazy , Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
@@ -6,9 +6,10 @@ import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header";  
-    
+import Body from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 // import Grocery from "./components/Grocery";
 
 
@@ -16,14 +17,25 @@ import Shimmer from "./components/Shimmer";
 // also known as on demand loading
 
 const Grocery = lazy(() => import("./components/Grocery"))
-const Body = lazy(() => import("./components/Body"));
 
 const AppLayout = () => {
+
+  const [userName , setUserName] = useState()
+
+  useEffect(() => {
+    const data = {
+      name : "Dev Chauhan"
+    }
+    setUserName(data.name)
+  }, [])
+
   return (
+    <UserContext.Provider value = {{loggedInUser : userName , setUserName}}>
     <div className="app">
       <Header />
       <Outlet />
     </div>
+    </UserContext.Provider>
   );
 };
 

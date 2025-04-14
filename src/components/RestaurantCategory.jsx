@@ -1,10 +1,12 @@
 import { useState } from "react";
 import AccordionItemList from "./AccordionItemList";
 
-const RestaurantCategory = ({ data }) => {
-  const [showItem, setIsOpen] = useState(false);
+const RestaurantCategory = ({ data , showItem, setShowIndex}) => {
+  
+  const toggleAccordion = () => {
+    setShowIndex();
+  }
 
-  const toggleAccordion = () => setIsOpen(!showItem);
 
   return (
     <div className="w-10/12 md:w-6/12 mx-auto"> 

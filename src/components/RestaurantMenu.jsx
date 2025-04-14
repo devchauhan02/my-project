@@ -7,6 +7,8 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
     const [restMenu, setRestMenu] = useState(null);
 
+    const [showIndex , setShowIndex] = useState(null);
+
     const {id} = useParams();
 
     useEffect(() => {
@@ -36,8 +38,11 @@ const RestaurantMenu = () => {
         <div className="text-center">
             <h2 className="font-bold my-6 text-2xl">{name}</h2>
             <h3 className="text-lg  font-bold mb-5">{cuisines?.join(", ")}</h3>
-            {categories.map((category) => <RestaurantCategory key = {category?.card?.card.title} data = {category?.card?.card}/>)}
-        </div>
+            {categories.map((category , index) => <RestaurantCategory key = {category?.card?.card.title} 
+            showItem = {index === showIndex ? true : false} 
+            setShowIndex = {() => setShowIndex(index)} 
+            data = {category?.card?.card}/>)}
+        </div> 
     );
 };
 

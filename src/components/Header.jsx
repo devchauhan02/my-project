@@ -1,9 +1,13 @@
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom"; 
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
+
+   const { loggedInUser} = useContext(UserContext);
 
   return (
     <div className="flex justify-between items-center pr-8 bg-green-50 shadow-md">
@@ -23,8 +27,8 @@ const Header = () => {
         <li><Link to="/about" className="hover:text-green-600">About Us</Link></li>
         <li><Link to="/contact" className="hover:text-green-600">Contact Us</Link></li>
         <li><Link to="/grocery" className="hover:text-green-600">Grocery</Link></li>
-        <li><Link to="/cart" className="hover:text-green-600">Cart</Link></li>
         <li><Link to="/login" className="hover:text-green-600">Login</Link></li>
+        <li><Link to="/cart" className="hover:text-green-600">{loggedInUser}</Link></li>
       </ul>
     </div>
   );

@@ -14,3 +14,15 @@ If you are developing a production application, we recommend using TypeScript an
 
 # Higher Order Component
     - Takes a component enhances it and return that component
+
+# 2 types of Routing in web apps
+    - Client Side
+    - Server Side
+
+# Redux Toolkit
+    - Install @reduxjs/toolkit and react-redux
+    - Build our Store
+    - Connect our store to our app
+    - Slice (cartSlice)
+    - dispatch(Action)
+    - Selector

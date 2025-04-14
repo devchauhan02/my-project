@@ -1,4 +1,15 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+
 const AccordionItemList = ({ items }) => {
+
+    const dispatch = useDispatch();
+
+    const handleAddItem = (item) => {
+        //Dispatch an action
+        dispatch(addItem(item))
+    }
+
     return (
         <div className="mt-2 ">
             {items?.map((item) => (
@@ -25,7 +36,8 @@ const AccordionItemList = ({ items }) => {
 
                         }
                         <div className="flex flex-col">
-                            <button className="font-bold text-center m-auto rounded-xl shadow-2xl w-30 py-2 bg-white  text-green-600 cursor-pointer hover:bg-gray-50">ADD</button>
+                            <button className="font-bold text-center m-auto rounded-xl shadow-2xl w-30 py-2 bg-white  text-green-600 cursor-pointer hover:bg-gray-50" onClick={() => handleAddItem(item)}>
+                                ADD </button>
                             <span className="text-gray-600 text-xs">Customisable</span>
                         </div>
                     </div>

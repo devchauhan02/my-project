@@ -1,15 +1,17 @@
-import React , { lazy , Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
-import Header from "./components/Header";  
+import Header from "./components/Header";
 import Body from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux"
+import appStore from "./utils/appStore";
 // import Grocery from "./components/Grocery";
 
 
@@ -20,22 +22,25 @@ const Grocery = lazy(() => import("./components/Grocery"))
 
 const AppLayout = () => {
 
-  const [userName , setUserName] = useState()
+  const [userName, setUserName] = useState()
 
   useEffect(() => {
     const data = {
-      name : "Dev Chauhan"
+      name: "Dev Chauhan"
     }
     setUserName(data.name)
   }, [])
 
+
   return (
-    <UserContext.Provider value = {{loggedInUser : userName , setUserName}}>
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
-    </UserContext.Provider>
+    <Provider store={appStore} >
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -67,11 +72,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurant/:id",
-        element: <RestaurantMenu/>
+        element: <RestaurantMenu />
       },
       {
-      path: "/grocery",
-      element: <Suspense fallback = {<Shimmer/>}> <Grocery/></Suspense>
+        path: "/grocery",
+        element: <Suspense fallback={<Shimmer />}> <Grocery /></Suspense>
       }
     ],
     errorElement: <ErrorPage />,
